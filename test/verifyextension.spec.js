@@ -1,11 +1,12 @@
-const mdwnExtension = require("../lib/verifyExtension"); // Importa la función mdwnExtension desde un archivo llamado "verifyExtension" en una ubicación relativa.
+// Importa la función mdwnExtension desde el módulo "../lib/verifyExtension".
+const mdwnExtension = require("../lib/verifyExtension");
 
+// Inicia una suite de pruebas llamada "isMdwnExtension" usando la función describe de Jest.
 describe("isMdwnExtension", () => {
-  // Comienza la descripción de las pruebas para la función mdwnExtension.
+  // PRIMER CASO DE PRUEBA: verifica que la función devuelva true para extensiones de Markdown válidas.
   it("should return true for valid Markdown extensions", () => {
-    // Prueba 1: Debe devolver true para extensiones de Markdown válidas.
+    // Lista de extensiones de archivo de Markdown válidas.
     const validExtensions = [
-      // Lista de extensiones de archivo válidas para Markdown.
       ".md",
       ".markdown",
       ".mkd",
@@ -15,16 +16,19 @@ describe("isMdwnExtension", () => {
       ".mdtext",
       ".text",
     ];
-    // Itera a través de las extensiones válidas y verifica que la función mdwnExtension devuelva true para cada una de ellas.
+
+    // Para cada extensión en la lista de extensiones válidas, verifica que mdwnExtension devuelva true.
     validExtensions.forEach((ext) => {
       expect(mdwnExtension(`file${ext}`)).toBe(true);
     });
   });
 
+  // SEGUNDO CASO DE PRUEBA: verifica que la función devuelva false para extensiones de archivo inválidas.
   it("should return false for invalid extensions", () => {
-    // Prueba 2: Debe devolver false para extensiones inválidas.
-    const invalidExtensions = [".txt", ".html", ".js"]; // Lista de extensiones de archivo inválidas.
-    // Itera a través de las extensiones inválidas y verifica que la función mdwnExtension devuelva false para cada una de ellas.
+    // Lista de extensiones de archivo inválidas.
+    const invalidExtensions = [".txt", ".html", ".js"];
+
+    // Para cada extensión en la lista de extensiones inválidas, verifica que mdwnExtension devuelva false.
     invalidExtensions.forEach((ext) => {
       expect(mdwnExtension(`file${ext}`)).toBe(false);
     });
